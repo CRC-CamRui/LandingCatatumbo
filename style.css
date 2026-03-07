@@ -1,0 +1,1050 @@
+/* Base settings */
+html {
+    font-size: 16px;
+    /* Font-size base en píxeles */
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Geologica', sans-serif;
+    background-color: #f8ecdc;
+    /* Color de fondo */
+    color: #1e2433;
+    /* Color de la fuente para esta sección */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hero Section Styles */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+}
+
+/* 12 Column Centered Grid layout */
+.hero-grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1.5rem;
+    /* Separación entre columnas */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Typography settings using rem */
+
+.hero-title {
+    grid-column: 1 / -1;
+    font-size: 8.5rem;
+    /* Unidades rem */
+    font-weight: 700;
+    /* Bold */
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
+}
+
+.hero-subtitle {
+    grid-column: 1 / -1;
+    font-size: 3rem;
+    /* Unidades rem */
+    font-weight: 700;
+    /* Bold */
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+}
+
+.hero-paragraph {
+    grid-column: 1 / -1;
+    font-size: 1.125rem;
+    /* Unidades rem */
+    font-weight: 400;
+    /* Regular */
+    line-height: 1.6;
+}
+
+/* Responsive Grid - Disposición 12 columnas centrado */
+@media (min-width: 768px) {
+
+    .hero-title,
+    .hero-subtitle {
+        grid-column: 2 / 12;
+    }
+
+    .hero-paragraph {
+        grid-column: 3 / 11;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .hero-title,
+    .hero-subtitle {
+        grid-column: 1 / -1;
+    }
+
+    .hero-paragraph {
+        /* Centrando en 6 columnas centrales (columna 4 a 9) */
+        grid-column: 4 / 10;
+    }
+}
+
+/* Ajustes Responsivos para Texto */
+@media (max-width: 1023px) {
+    .hero-title {
+        font-size: 6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 2rem;
+    }
+
+    .hero-grid-container {
+        column-gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .hero-paragraph {
+        font-size: 1rem;
+    }
+}
+
+/* Accordion Section */
+.accordion-container {
+    padding: 3rem 1.5rem 6rem;
+    display: flex;
+    justify-content: center;
+}
+
+.accordion-grid {
+    display: flex;
+    gap: 1.5rem;
+    /* Separación de las columnas */
+    width: 100%;
+    max-width: 1200px;
+    height: 480px;
+    /* Altura de las cajas */
+    margin: 0 auto;
+}
+
+.accordion-item {
+    flex: 2 1 0%;
+    border-radius: 2rem;
+    background-color: #f8ecdc;
+    /* Sombras suaves para efecto elevado (estilo drop shadow / neumorfismo) */
+    box-shadow:
+        8px 8px 16px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 0;
+    /* Previene desbordamientos en flex */
+}
+
+/* Estado Hover */
+.accordion-item:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        -8px -8px 16px rgba(255, 255, 255, 0.4),
+        12px 12px 24px rgba(0, 0, 0, 0.08);
+    /* Se eleva y aumenta la sombra */
+}
+
+/* Estado Activo (8 columnas) */
+.accordion-item.active {
+    flex: 8 1 0%;
+    cursor: default;
+}
+
+/* El item activo también mantiene su sombra si se cierne sobre él pero no se mueve (opcional) */
+.accordion-item.active:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        -8px -8px 16px rgba(255, 255, 255, 0.4),
+        8px 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* Contenido de la caja */
+.accordion-content {
+    /* Ancho estable para evitar que el texto parpadee o colapse durante la animación */
+    width: 768px;
+    height: 100%;
+    padding: 3.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.accordion-text {
+    width: 360px;
+    /* Aproximadamente la mitad de la caja de 8 columnas */
+}
+
+.accordion-item .accordion-text.right-aligned {
+    margin-left: auto;
+}
+
+.accordion-text p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.accordion-text p:last-child {
+    margin-bottom: 0;
+}
+
+.accordion-text p strong {
+    font-weight: 700;
+}
+
+/* Responsive Grids para el Acordeón */
+@media (max-width: 1023px) {
+    .accordion-grid {
+        flex-direction: column;
+        height: 700px;
+    }
+
+    .accordion-item {
+        flex: 2 1 0%;
+        width: 100%;
+    }
+
+    .accordion-item.active {
+        flex: 8 1 0%;
+    }
+
+    .accordion-content {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .accordion-text,
+    .accordion-item:nth-child(1) .accordion-text.right-aligned {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .accordion-grid {
+        height: 800px;
+    }
+
+    .accordion-text p {
+        font-size: 1rem;
+    }
+}
+
+/* Slider Section */
+.slider-section {
+    padding: 3rem 1.5rem 8rem;
+    background-color: #d2c2ad;
+}
+
+.slider-main-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    text-align: center;
+    color: #1e2433;
+    margin-bottom: 5rem;
+    line-height: 1.2;
+}
+
+.slider-outer-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    align-items: start;
+}
+
+.slider-arrow {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #1e2433;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    /* Aproximadamente la altura de la primera línea del subtítulo */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.slider-arrow:hover {
+    transform: scale(1.1);
+}
+
+.slider-arrow:active {
+    transform: scale(0.95);
+}
+
+.slider-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.prev-arrow {
+    grid-column: 1 / 2;
+}
+
+.next-arrow {
+    grid-column: 12 / 13;
+}
+
+.slider-viewport {
+    grid-column: 2 / 12;
+    /* Toma 10 columnas exactamente */
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
+}
+
+.slide {
+    flex: 0 0 100%;
+    /* Cada slide mide exactamente el 100% del viewport de 10 columnas */
+    min-width: 100%;
+    /* Añadimos padding a la derecha para asegurarnos visualmente si hubiera scroll */
+    box-sizing: border-box;
+}
+
+.slide-subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #b83e09;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+.slide-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    /* Sub-grilla interna de 10 columnas */
+    gap: 1.5rem;
+    /* Separación horizontal y vertical (column-gap y row-gap) */
+}
+
+/* Base de cajas de estadísticas */
+.stat-box {
+    border-radius: 1.5rem;
+    padding: 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-box.primary-box {
+    background-color: #1e2433;
+    color: #f8ecdc;
+}
+
+.stat-box.secondary-box {
+    background-color: #f8ecdc;
+    color: #1e2433;
+    /* Box shadow para el efecto neumorfismo / neumórfico */
+    box-shadow:
+        8px 8px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* Tipografía dentro de las cajas */
+.stat-box p {
+    line-height: 1.1;
+}
+
+.box-title {
+    font-weight: 700;
+    padding-bottom: 1rem;
+}
+
+.huge-text {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 0;
+    letter-spacing: -0.02em;
+}
+
+.large-text {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: -10;
+    letter-spacing: -0.01em;
+}
+
+.medium-huge {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 0;
+}
+
+.center-text {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.mb-2 {
+    margin-bottom: 0.1rem;
+}
+
+.mt-2 {
+    margin-top: 0.01rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* Posicionamiento en Grilla de 10 Columnas */
+
+/* Box 1 (oscuro): Siempre primera fila, 4 columnas de ancho */
+.box-1-1,
+.box-2-1,
+.box-3-1,
+.box-4-1,
+.box-5-1 {
+    grid-column: 1 / span 4;
+}
+
+/* Box 2 (claro principal): Siempre primera fila, 6 columnas de ancho empezando después de Box 1 */
+.box-1-2,
+.box-2-2,
+.box-3-2,
+.box-4-2,
+.box-5-2 {
+    grid-column: 5 / span 6;
+}
+
+/* Ubicación de pequeñas cajas (3 columnas cada una) */
+/* Slide 2: 3 cajas debajo */
+.box-2-3 {
+    grid-column: 1 / span 3;
+}
+
+.box-2-4 {
+    grid-column: 4 / span 3;
+}
+
+.box-2-5 {
+    grid-column: 7 / span 3;
+}
+
+/* Slide 3: 2 cajas debajo */
+.box-3-3 {
+    grid-column: 2 / span 3;
+}
+
+.box-3-4 {
+    grid-column: 5 / span 3;
+}
+
+/* Slide 4: 2 cajas debajo */
+.box-4-3 {
+    grid-column: 2 / span 3;
+}
+
+.box-4-4 {
+    grid-column: 5 / span 3;
+}
+
+/* Slide 5: 3 cajas debajo */
+.box-5-3 {
+    grid-column: 2 / span 3;
+}
+
+.box-5-4 {
+    grid-column: 5 / span 3;
+}
+
+.box-5-5 {
+    grid-column: 8 / span 3;
+}
+
+/* Ajustes Responsivos Slider */
+@media (max-width: 1023px) {
+    .slider-main-title {
+        font-size: 2.5rem;
+    }
+
+    .slide-grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
+        gap: 1rem;
+    }
+
+    /* Reseteo de columnas para que ocupen todo en móvil */
+    .slide-grid>div {
+        grid-column: 1 / -1 !important;
+    }
+
+    .huge-text {
+        font-size: 3rem;
+    }
+
+    .medium-huge {
+        font-size: 1.5rem;
+    }
+
+    .large-text {
+        font-size: 1.75rem;
+    }
+
+    .slider-arrow {
+        grid-row: 1;
+        /* Flechas arriba junto al subtítulo */
+    }
+
+    .slider-viewport {
+        grid-column: 1 / -1;
+        /* Ocupa todo el espacio, las flechas pueden flotar encima */
+        padding: 0 1rem;
+    }
+
+    .prev-arrow {
+        position: absolute;
+        left: 0;
+        z-index: 10;
+        margin-top: 0;
+    }
+
+    .next-arrow {
+        position: absolute;
+        right: 0;
+        z-index: 10;
+        margin-top: 0;
+    }
+
+    .slide-subtitle {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+}
+
+/* Context Section Styles */
+.context-section {
+    background-color: #7aad6a;
+    padding: 6rem 1.5rem;
+}
+
+.context-grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1.5rem;
+    row-gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.context-article-1 {
+    grid-column: 8 / span 5;
+}
+
+.context-article-2-title {
+    grid-column: 1 / -1;
+    margin-top: 3rem;
+    /* Espacio extra para separar del primer artículo */
+}
+
+.context-article-2-text-1 {
+    grid-column: 1 / span 6;
+}
+
+.context-article-2-text-2 {
+    grid-column: 7 / span 6;
+}
+
+.context-title {
+    color: #f8ecdc;
+    font-size: 3.5rem;
+    font-weight: 100;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+.context-paragraph {
+    /* Toma el mismo estilo que .hero-paragraph pero sin grid-column y flexbox de la otra sección */
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #1e2433;
+}
+
+.context-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b83e09;
+    color: #f8ecdc;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.context-btn:hover {
+    background-color: #9a3307;
+    transform: scale(1.05);
+}
+
+/* Responsiveness Context Section */
+@media (max-width: 1023px) {
+    .context-article-1 {
+        grid-column: 1 / -1;
+    }
+
+    .context-article-2-text-1,
+    .context-article-2-text-2 {
+        grid-column: 1 / -1;
+    }
+
+    .context-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .context-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .context-grid-container {
+        row-gap: 2rem;
+    }
+
+    .context-title {
+        font-size: 2rem;
+    }
+
+    .context-paragraph {
+        font-size: 1rem;
+    }
+}
+
+/* Testimonios Section Styles */
+.testimonios-section {
+    background-color: #1e2433;
+    /* Color de fondo pedido */
+    padding: 6rem 1.5rem;
+    color: #f8ecdc;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.testimonios-header-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1.5rem;
+    row-gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 5rem auto;
+}
+
+.testimonios-title {
+    grid-column: 2 / span 4;
+    color: #f8ecdc;
+    font-size: 3em;
+    font-weight: 300;
+    line-height: 1.1;
+}
+
+.testimonios-desc {
+    grid-column: 7 / span 6;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #f8ecdc;
+}
+
+.testimonios-subtitle {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8ecdc;
+    margin-top: 2rem;
+}
+
+/* Slider / Track para las Cajas de Testimonios */
+.testimonios-slider-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    /* Wrapper será calculado por JS para mayor precisión, o tomamos 100% de base */
+}
+
+.testimonios-track {
+    display: flex;
+    gap: 1.5rem;
+    /* Transición suave para el track deslizable */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+    /* Configuración por defecto antes de que actúe JS si es necesario */
+    --wrapper-w: min(100vw - 3rem, 1200px);
+    --col-w: calc((var(--wrapper-w) - (11 * 1.5rem)) / 12);
+
+    /* Variables para el cálculo de transform */
+    --active-pos-target: calc(var(--col-w) + 1.5rem);
+    /* Columna 2 */
+    --card-full-w: calc(var(--col-w) * 3 + 4.5rem);
+    /* Ancho 3 cols + gap interno y externo */
+
+    /* El desplazamiento se dictamina por --active-i de JS */
+    transform: translateX(calc(var(--active-pos-target) - var(--active-i, 0) * var(--card-full-w)));
+}
+
+.testimonio-card {
+    background-color: #7aad6a;
+    border-radius: 1.5rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, border 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 520px;
+    /* Altura fija para evitar desplazamientos verticales extraños */
+    border: 2px solid transparent;
+
+    /* Ocupa 3 columnas inicialmente */
+    width: calc(var(--col-w) * 3 + 3rem);
+}
+
+.testimonio-card:not(.active):hover {
+    transform: translateY(-8px);
+    /* Subir sutilmente (translateY) como fue solicitado */
+    border-color: rgba(248, 236, 220, 0.6);
+    /* Borde claro */
+}
+
+.testimonio-card.active {
+    /* La caja destacada ocupa 7 columnas */
+    width: calc(var(--col-w) * 7 + 9rem);
+    cursor: default;
+    border-color: transparent;
+    transform: translateY(0);
+}
+
+/* Contenidos de las Tarjetas de Testimonios */
+.card-small,
+.card-large {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 2.5rem;
+    transition: opacity 0.4s ease;
+}
+
+.card-small {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Aterrizar abajo como en el diseño */
+    pointer-events: auto;
+}
+
+.testimonio-card.active .card-small {
+    /* Al expandirse, el título y descripción pequeña se ocultan */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card-large {
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonio-card.active .card-large {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.3s;
+}
+
+/* Tipografía de las Tarjetas */
+.small-desc {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #f8ecdc;
+}
+
+.small-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1.1;
+    color: #f8ecdc;
+}
+
+/* Contenido de Tarjeta Grande (Activa) */
+.card-large-top {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    height: 200px;
+    /* Alto placeholder */
+}
+
+.quote-icon {
+    font-size: 6rem;
+    color: #b83e09;
+    line-height: 1;
+    font-family: Georgia, serif;
+    font-weight: bold;
+}
+
+.image-placeholder {
+    flex-grow: 1;
+    background-color: #d9d9d9;
+    border-radius: 0.5rem;
+    height: 100%;
+}
+
+.large-desc {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #f8ecdc;
+    margin-bottom: 1.5rem;
+}
+
+.large-quote {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #f8ecdc;
+    font-weight: 700;
+}
+
+/* Responsiveness Testimonios Section */
+@media (max-width: 1023px) {
+    .testimonios-header-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .testimonios-title,
+    .testimonios-desc,
+    .testimonios-subtitle {
+        text-align: left;
+    }
+
+    .testimonio-card {
+        width: 300px;
+    }
+
+    .testimonio-card.active {
+        width: 90vw;
+        max-width: 600px;
+    }
+
+    .testimonios-track {
+        --active-pos-target: 1.5rem;
+        /* Start near edge on mobile */
+        --card-full-w: calc(300px + 1.5rem);
+    }
+}
+
+@media (max-width: 767px) {
+    .testimonios-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .testimonio-card {
+        height: auto;
+        min-height: 550px;
+    }
+
+    .testimonio-card.active {
+        width: 85vw;
+    }
+
+    .card-large-top {
+        height: 150px;
+    }
+
+    .testimonios-title {
+        font-size: 2.5rem;
+    }
+
+    .small-title {
+        font-size: 2rem;
+    }
+}
+
+/* Contenidos Section Styles */
+.contenidos-section {
+    background-color: #f8ecdc;
+    padding: 6rem 1.5rem;
+}
+
+.contenidos-grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 1.5rem;
+    row-gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contenidos-left {
+    grid-column: 1 / span 6;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenidos-title {
+    color: #1e2433;
+    /* Dark text for contrast */
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+}
+
+.contenidos-video-wrapper {
+    width: 100%;
+    /* 16:9 Aspect Ratio */
+    aspect-ratio: 16 / 9;
+    background-color: #1a2232;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f8ecdc;
+    overflow: hidden;
+}
+
+.video-placeholder p {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.contenidos-right {
+    grid-column: 7 / span 6;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.informe-card {
+    flex: 1;
+    /* Ocupan la misma anchura, approx 3 columnas cada una */
+    background-color: #008e4d;
+    border-radius: 1rem;
+    padding: 2.5rem 1.5rem;
+    color: #f8ecdc;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease;
+}
+
+.informe-card:hover {
+    transform: translateY(-8px);
+}
+
+.informe-kicker {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.informe-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    /* Flex grow empuja el botón hacia abajo si las cajas varían en altura */
+    flex-grow: 1;
+}
+
+.informe-btn-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    /* A la derecha */
+}
+
+.informe-btn {
+    background-color: #e14e1d;
+    color: #f8ecdc;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.informe-card:hover .informe-btn {
+    background-color: #c03d12;
+    transform: scale(1.05);
+    /* Sutil feedback en el botón al hacer hover en la caja */
+}
+
+/* Responsiveness Contenidos Section */
+@media (max-width: 1023px) {
+    .contenidos-left {
+        grid-column: 1 / -1;
+    }
+
+    .contenidos-right {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 767px) {
+    .contenidos-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .contenidos-title {
+        font-size: 2.5rem;
+    }
+
+    .contenidos-right {
+        flex-direction: column;
+    }
+}
