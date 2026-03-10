@@ -25,6 +25,8 @@ body {
 
 /* Hero Section Styles */
 .hero {
+    position: relative;
+    overflow: hidden;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -42,7 +44,74 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
+
+/* Placeholder Images in Hero */
+.hero-images {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    pointer-events: none;
+    /* Evita que bloqueen clics */
+    z-index: 0;
+}
+
+.left-images {
+    left: 0;
+}
+
+.right-images {
+    right: 0;
+}
+
+.hero-img {
+    position: absolute;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Imágenes Izquierda (Superpuestas con z-index) */
+.img-l-1 {
+    top: -10%;
+    left: -10px;
+    width: 450px;
+    z-index: 1;
+}
+
+.img-l-2 {
+    top: 40%;
+    left: -20px;
+    width: 220px;
+    z-index: 3;
+}
+
+.img-l-3 {
+    top: 63%;
+    left: 5px;
+    width: 260px;
+    z-index: 2;
+}
+
+/* Imágenes Derecha (Con rotación) */
+.img-r-1 {
+    top: 60%;
+    right: 0px;
+    width: 400px;
+    transform: rotate(5deg);
+    z-index: 2;
+}
+
+.img-r-2 {
+    top: 0%;
+    right: -20px;
+    width: 400px;
+    transform: rotate(2deg);
+    z-index: 1;
+}
+
 
 /* Typography settings using rem */
 
@@ -105,6 +174,11 @@ body {
 
 /* Ajustes Responsivos para Texto */
 @media (max-width: 1023px) {
+    .hero-img {
+        opacity: 0.15;
+        /* Fondo translúcido */
+    }
+
     .hero-title {
         font-size: 6rem;
     }
@@ -115,6 +189,10 @@ body {
 }
 
 @media (max-width: 767px) {
+    .hero-images {
+        display: none;
+    }
+
     .hero-title {
         font-size: 4rem;
     }
