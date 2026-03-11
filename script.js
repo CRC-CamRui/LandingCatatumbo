@@ -32,43 +32,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Si la slider existe en el DOM
     if (track && btnPrev && btnNext) {
-        let currentSlide = 0;
-        const totalSlides = document.querySelectorAll('.slide').length;
+        const slides = track.querySelectorAll('.slide');
+        const numOriginalSlides = slides.length;
 
-        const updateSliderPosition = () => {
-            // Transformamos el eje X un 100% por slider
+        if (numOriginalSlides > 0) {
+            // Técnina de clonación para slider infinito
+            const firstClone = slides[0].cloneNode(true);
+            const lastClone = slides[numOriginalSlides - 1].cloneNode(true);
+
+            firstClone.classList.add('clone');
+            lastClone.classList.add('clone');
+
+            // Insertamos los clones en el DOM
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, slides[0]);
+
+            // El slide actual inicial será el 1, porque el 0 es el clon del último
+            let currentSlide = 1;
+            let isTransitioning = false;
+
+            // Comenzamos en la posición del primer slide original sin animación
+            track.style.transition = 'none';
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-            // Evaluamos estado de botones
-            if (currentSlide === 0) {
-                btnPrev.disabled = true;
-            } else {
-                btnPrev.disabled = false;
-            }
+            const updateSliderPosition = () => {
+                // Restaurar la transición por defecto (tomada del CSS)
+                track.style.transition = '';
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            };
 
-            if (currentSlide === totalSlides - 1) {
-                btnNext.disabled = true;
-            } else {
-                btnNext.disabled = false;
-            }
-        };
-
-        // Inicializamos
-        updateSliderPosition();
-
-        btnNext.addEventListener('click', () => {
-            if (currentSlide < totalSlides - 1) {
+            btnNext.addEventListener('click', () => {
+                if (isTransitioning) return;
+                isTransitioning = true;
                 currentSlide++;
                 updateSliderPosition();
-            }
-        });
+            });
 
-        btnPrev.addEventListener('click', () => {
-            if (currentSlide > 0) {
+            btnPrev.addEventListener('click', () => {
+                if (isTransitioning) return;
+                isTransitioning = true;
                 currentSlide--;
                 updateSliderPosition();
-            }
-        });
+            });
+
+            track.addEventListener('transitionend', (e) => {
+                // Asegurarnos de que el evento viene del track y de su transform
+                if (e.target !== track || e.propertyName !== 'transform') return;
+
+                isTransitioning = false;
+
+                // Si llegamos al clon del primer slide (al final del track)
+                if (currentSlide === numOriginalSlides + 1) {
+                    track.style.transition = 'none';
+                    currentSlide = 1; // Volvemos al primer slide original
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+
+                // Si llegamos al clon del último slide (al inicio del track)
+                if (currentSlide === 0) {
+                    track.style.transition = 'none';
+                    currentSlide = numOriginalSlides; // Volvemos al último slide original
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+            });
+        }
     }
 
     // Configuración de la sección Testimonios (Slider Interactivo)
