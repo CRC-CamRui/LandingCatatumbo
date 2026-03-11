@@ -381,7 +381,10 @@ body {
     }
 }
 
-/* Slider Section */
+/* ==========================================================================
+   SECCIÓN SLIDER
+   ========================================================================== */
+
 .slider-section {
     padding: 30rem 1.5rem 10rem;
     background-color: #d2c2ad;
@@ -672,10 +675,13 @@ body {
     }
 }
 
-/* Context Section Styles */
+/* ==========================================================================
+   SECCIÓN CONTEXTO
+   ========================================================================== */
+
 .context-section {
     background-color: #7aad6a;
-    padding: 6rem 1.5rem;
+    padding: 24rem 1.5rem 30rem;
 }
 
 .context-grid-container {
@@ -775,11 +781,14 @@ body {
     }
 }
 
-/* Testimonios Section Styles */
+/* =========================================================================
+    SECCION TESTIMONIOS
+===========================================================================*/
+
+
 .testimonios-section {
     background-color: #1e2433;
-    /* Color de fondo pedido */
-    padding: 6rem 1.5rem;
+    padding: 24rem 1.5rem 30rem;
     color: #f8ecdc;
     overflow-x: hidden;
     width: 100%;
