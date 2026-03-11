@@ -1,4 +1,9 @@
 /* Base settings */
+html,
+body {
+    overflow-x: hidden;
+}
+
 html {
     font-size: 16px;
     /* Font-size base en píxeles */
@@ -389,6 +394,7 @@ body {
     padding: 30rem 1.5rem 10rem;
     background-color: #d2c2ad;
     position: relative;
+    z-index: 1;
 }
 
 .slider-section::before {
@@ -702,6 +708,7 @@ body {
     background-color: #7aad6a;
     padding: 24rem 1.5rem 30rem;
     position: relative;
+    z-index: 2;
 }
 
 .context-section::before {
@@ -827,9 +834,9 @@ body {
     background-color: #1e2433;
     padding: 24rem 1.5rem 30rem;
     color: #f8ecdc;
-    overflow-x: hidden;
     width: 100%;
     position: relative;
+    z-index: 3;
 }
 
 .testimonios-section::before {
@@ -1096,16 +1103,20 @@ body {
     padding: 18rem 1.5rem 6rem;
     /* Aumentado padding-top para acomodar el borde orgánico */
     position: relative;
+    z-index: 4;
 }
 
 .contenidos-section::before {
     content: url('assets/img/transitions/LINEtorn_3_4.png');
     position: absolute;
-    top: 0;
+    top: -3rem;
     left: 0;
     width: 100%;
     height: auto;
-    object-fit: cover;
+    background-image: url('assets/img/transitions/LINEtorn_3_4.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: 0;
     pointer-events: none;
 }
