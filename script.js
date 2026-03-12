@@ -53,12 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Comenzamos en la posición del primer slide original sin animación
             track.style.transition = 'none';
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            track.style.transform = `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 1.5}rem))`;
 
             const updateSliderPosition = () => {
                 // Restaurar la transición por defecto (tomada del CSS)
                 track.style.transition = '';
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                track.style.transform = `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 1.5}rem))`;
             };
 
             btnNext.addEventListener('click', () => {
@@ -85,14 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentSlide === numOriginalSlides + 1) {
                     track.style.transition = 'none';
                     currentSlide = 1; // Volvemos al primer slide original
-                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    track.style.transform = `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 1.5}rem))`;
                 }
 
                 // Si llegamos al clon del último slide (al inicio del track)
                 if (currentSlide === 0) {
                     track.style.transition = 'none';
                     currentSlide = numOriginalSlides; // Volvemos al último slide original
-                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    track.style.transform = `translateX(calc(-${currentSlide * 100}% - ${currentSlide * 1.5}rem))`;
                 }
             });
         }
