@@ -1003,6 +1003,22 @@ body {
     justify-content: flex-start;
     /* Aterrizar abajo como en el diseño */
     pointer-events: auto;
+    z-index: 0;
+    background-color: #7aad6a;
+}
+
+.card-small-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    object-position: left bottom;
+    mix-blend-mode: luminosity;
+    opacity: 0.3;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .testimonio-card.active .card-small {
