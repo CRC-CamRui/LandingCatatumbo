@@ -265,7 +265,7 @@ body {
 
 /* Estado Hover */
 .accordion-item:hover {
-    transform: translateY(-8px);
+    transform: translateY(-15px);
     box-shadow:
         -8px -8px 16px rgba(255, 255, 255, 0.4),
         12px 12px 24px rgba(0, 0, 0, 0.08);
@@ -971,7 +971,7 @@ body {
 }
 
 .testimonio-card:not(.active):hover {
-    transform: translateY(-8px);
+    transform: translateY(-15px);
     /* Subir sutilmente (translateY) como fue solicitado */
     border-color: rgba(248, 236, 220, 0.6);
     /* Borde claro */
@@ -1242,6 +1242,29 @@ body {
     flex-direction: column;
     align-items: flex-start;
     transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.informe-kicker,
+.informe-title,
+.informe-btn-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.informe-book-img {
+    position: absolute;
+    bottom: -1rem;
+    /* Ligeramente recortada en la parte de abajo */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 250px;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 0.3s ease;
 }
 
 .informe-card:hover {
@@ -1285,6 +1308,10 @@ body {
     background-color: #c03d12;
     transform: scale(1.05);
     /* Sutil feedback en el botón al hacer hover en la caja */
+}
+
+.informe-card:hover .informe-book-img {
+    transform: translate(-50%, -5px);
 }
 
 /* Responsiveness Contenidos Section */
