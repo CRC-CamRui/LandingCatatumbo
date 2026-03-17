@@ -139,4 +139,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Configuración del observador
+    const observerOptions = {
+        root: null, // usa el viewport del navegador
+        rootMargin: '0px',
+        threshold: 0.1 // se activa cuando el 10% del elemento es visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Si el elemento entra en pantalla
+            if (entry.isIntersecting) {
+                // Añadimos la clase 'active' que dispara la animación CSS
+                entry.target.classList.add('active');
+
+                // Opcional: Dejar de observar el elemento si solo queremos que la animación ocurra una vez
+                // observer.unobserve(entry.target);
+            } else {
+                // Opcional: Quitar la clase si quieres que se repita la animación al subir el scroll
+                // entry.target.classList.remove('active');
+            }
+        });
+    }, observerOptions);
+
+    // Seleccionamos todos los elementos que queremos animar
+    const elementsToReveal = document.querySelectorAll('.reveal, .reveal-left');
+
+    // Empezamos a observar cada uno
+    elementsToReveal.forEach(el => {
+        observer.observe(el);
+    });
+
 });
